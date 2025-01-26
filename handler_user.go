@@ -12,6 +12,22 @@ import (
 	"github.com/google/uuid"
 )
 
+func handlerUsers(s *state, cmd command) error {
+	usersList, err := s.db.GetUsers(context.Background())
+	if err != nil {
+		return fmt.Errorf("cant get users list, %v", err)
+	}
+	currUser := s.cfg.CurrentUserName
+	for _, v := range usersList {
+		if v != currUser {
+			fmt.Println("*", v)
+		} else {
+			fmt.Println("*", v, "(current)")
+		}
+	}
+	return nil
+}
+
 func handlerLogin(s *state, cmd command) error {
 	if len(cmd.Args) != 1 {
 		return fmt.Errorf("usage: %s <name>", cmd.name)
@@ -57,18 +73,10 @@ func handlerRegister(s *state, cmd command) error {
 	if err != nil {
 		return fmt.Errorf("failed to create user: %w", err)
 	}
-	s.cfg.SetUser(name)
-	fmt.Printf("successful user %v registration\n", name)
-	return nil
-}
-
-func handlerReset(s *state, cmd command) error {
-	err := s.db.DeleteAllUsers(context.Background())
+	err = s.cfg.SetUser(name)
 	if err != nil {
-		fmt.Println("fail to delete all users")
-		os.Exit(1)
+		return fmt.Errorf("couldnt set current user: %w", err)
 	}
-	fmt.Println("successfully deleted all users")
-	os.Exit(0)
+	fmt.Printf("successful user %v registration\n", name)
 	return nil
 }
