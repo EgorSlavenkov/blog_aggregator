@@ -5,7 +5,7 @@ import (
 )
 
 type command struct {
-	Name string
+	name string
 	Args []string
 }
 
@@ -18,7 +18,7 @@ func (c *commands) register(name string, f func(*state, command) error) {
 }
 
 func (c *commands) run(s *state, cmd command) error {
-	currFunc, ok := c.registeredCommands[cmd.Name]
+	currFunc, ok := c.registeredCommands[cmd.name]
 	if !ok {
 		return errors.New("no command exist")
 	}
