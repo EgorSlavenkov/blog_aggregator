@@ -9,6 +9,15 @@ import (
 	"github.com/google/uuid"
 )
 
+func handleFeeds(s *state, cmd command) error {
+	feedsList, err := s.db.GetFeeds(context.Background())
+	if err != nil {
+		return fmt.Errorf("cant get feeds list: %v", err)
+	}
+	fmt.Println(feedsList)
+	return nil
+}
+
 func handleAddFeed(s *state, cmd command) error {
 	if len(cmd.Args) != 2 {
 		return fmt.Errorf("usage: %s <name> <url>", cmd.name)
@@ -27,10 +36,7 @@ func handleAddFeed(s *state, cmd command) error {
 		UpdatedAt: time.Now(),
 		Name:      name,
 		Url:       url,
-		UserID: uuid.NullUUID{
-			UUID:  user.ID,
-			Valid: true,
-		},
+		UserID:    user.ID,
 	}
 
 	feed, err := s.db.CreateFeed(context.Background(), params)
