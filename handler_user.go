@@ -13,17 +13,16 @@ import (
 )
 
 func handlerUsers(s *state, cmd command) error {
-	usersList, err := s.db.GetUsers(context.Background())
+	users, err := s.db.GetUsers(context.Background())
 	if err != nil {
-		return fmt.Errorf("cant get users list, %v", err)
+		return fmt.Errorf("couldn't list users: %w", err)
 	}
-	currUser := s.cfg.CurrentUserName
-	for _, v := range usersList {
-		if v != currUser {
-			fmt.Println("*", v)
-		} else {
-			fmt.Println("*", v, "(current)")
+	for _, user := range users {
+		if user.Name == s.cfg.CurrentUserName {
+			fmt.Printf("* %v (current)\n", user.Name)
+			continue
 		}
+		fmt.Printf("* %v\n", user.Name)
 	}
 	return nil
 }
