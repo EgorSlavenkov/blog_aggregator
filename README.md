@@ -4,7 +4,7 @@ A simple CLI tool to aggregate blog posts from different RSS feeds.
 
 ## Requirements
 
-- Go (version X.X or higher)
+- Go (version 1.23.4 or higher)
 - PostgreSQL (version X.X or higher)
 
 ## Installation
