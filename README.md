@@ -78,18 +78,18 @@ A simple CLI tool to aggregate blog posts from different RSS feeds.
 ## Available Commands
 
 - Setup & Database:
-  - `gator register <name>` - (Create a new user)
-  - `gator reset` - (Reset/clear the database)
-  - `gator login <name>` - (Log in as a user that already exists)
+  - `blog_aggregator register <name>` - (Create a new user)
+  - `blog_aggregator reset` - (Reset/clear the database)
+  - `blog_aggregator login <name>` - (Log in as a user that already exists)
 
 - Feed management:
-  - `gator addfeed <url>` - (Add a feed to the database)
-  - `gator feeds` - (List all feeds)
-  - `gator follow <feed_id>` - (Follow a feed that already exists in the database)
-  - `gator following` - (Lists feeds the user is following)
-  - `gator unfollow <feed_id>` - (Unfollow a feed that already exists in the database)
+  - `blog_aggregator addfeed <url>` - (Add a feed to the database)
+  - `blog_aggregator feeds` - (List all feeds)
+  - `blog_aggregator follow <feed_id>` - (Follow a feed that already exists in the database)
+  - `blog_aggregator following` - (Lists feeds the user is following)
+  - `blog_aggregator unfollow <feed_id>` - (Unfollow a feed that already exists in the database)
 
 - Content & Updates:
-  - `gator browse [limit]` - (View the posts, defaults to 2)
-  - `gator users` - (List all users)
-  - `gator agg <30s>` - (Start the aggregator. Can use preferred time intervals such as 1m 3m 6m etc...) ctrl + c to end
+  - `blog_aggregator browse [limit]` - (View the posts, defaults to 2)
+  - `blog_aggregator users` - (List all users)
+  - `blog_aggregator agg <30s>` - (Start the aggregator. Can use preferred time intervals such as 1m 3m 6m etc...) ctrl + c to end
