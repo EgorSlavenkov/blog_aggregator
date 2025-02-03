@@ -9,7 +9,7 @@ A simple CLI tool to aggregate blog posts from different RSS feeds.
 
 ## Installation
 
-1. Install `gator` with:
+1. Install `blog_aggregator` with:
 
 ```go install github.com/EgorSlavenkov/blog_aggregator@latest```
 
